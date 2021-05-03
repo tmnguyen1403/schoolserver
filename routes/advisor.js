@@ -24,7 +24,8 @@ router.get('/advisor/:id/appointments', (req, res) => {
     console.log("Params", req.params);
     const {id} = req.params;
 
-    const queryString = `SELECT a.firstName, ap.studentID as studentid, ap.note
+    const queryString = `SELECT a.firstName, ap.studentID as studentId, ap.note,
+    ap.date
     FROM ${ADVISOR_TABLE} a, ${APPOINTMENT_TABLE} ap
      WHERE a.ID = ap.advisorID AND a.ID = ${id};`;
 
@@ -48,7 +49,7 @@ router.get('/advisor/:id/tasks', (req, res) => {
     const {id} = req.params;
 
     const queryString = 
-    ` SELECT t.id, t.studentID, t.description, t.deadline
+    ` SELECT t.id, t.studentId, t.description, t.deadline
     FROM ${ADVISOR_TABLE} a, ${TASK_TABLE} t
     WHERE a.id = t.advisorID AND a.ID = ${id};`;
 
